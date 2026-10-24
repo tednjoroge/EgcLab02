@@ -67,6 +67,8 @@ public sealed class Triangle : IDisposable
         GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
     }
 
+
+
     /// <summary>Setează poziția vârfului <paramref name="vertex"/> (0, 1 sau 2) în tabloul din RAM.</summary>
     public void SetPosition(int vertex, float x, float y, float z = 0.0f)
     {
@@ -75,6 +77,7 @@ public sealed class Triangle : IDisposable
         Vertices[i + 1] = y;
         Vertices[i + 2] = z;
     }
+    
 
     /// <summary>Setează culoarea vârfului <paramref name="vertex"/> în tabloul din RAM.</summary>
     public void SetColor(int vertex, float r, float g, float b)
@@ -107,3 +110,4 @@ public sealed class Triangle : IDisposable
         GL.DeleteVertexArray(_vao);
     }
 }
+

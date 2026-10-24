@@ -17,7 +17,7 @@ public class Game : GameWindow
  
     // Obiectele care folosesc OpenGL se creează în OnLoad (abia atunci există contextul OpenGL).
     private Shader _shader = null!;
-    private Triangle _triangle = null!;
+    private Quad _Quad = null!;
 
     // Starea aplicației (se modifică în OnUpdateFrame, se folosește în OnRenderFrame).
     private Color4 _clearColor = new(0.0f, 0.0f, 1.0f, 1.0f);   // culoarea de fundal
@@ -60,7 +60,8 @@ public class Game : GameWindow
         GL.Viewport(0, 0, ClientSize.X, ClientSize.Y);
 
         _shader = Shader.FromFiles("Shaders/shader.vert", "Shaders/shader.frag");
-        _triangle = new Triangle();
+        _Quad = new Quad();
+
     }
 
     /// <summary>Apelată când se schimbă dimensiunea ferestrei.</summary>
@@ -106,10 +107,10 @@ public class Game : GameWindow
             _tint = new Color4(0f, 0f, 1f, 1f);
         }
         //changing the size of the triangle with time
-        _triangle.SetPosition(2, 0.0f, 0.3f + 0.3f * MathF.Sin((float)_elapsed));
-        _triangle.SetPosition(0, -0.3f + -0.3f * MathF.Cos((float)_elapsed), 0.0f );
-        _triangle.SetPosition(1, 0.3f + 0.3f * MathF.Sin((float)_elapsed), 0.0f );
-        _triangle.UpdateVertices();
+       // _triangle.SetPosition(2, 0.0f, 0.3f + 0.3f * MathF.Sin((float)_elapsed));
+        //_triangle.SetPosition(0, -0.3f + -0.3f * MathF.Cos((float)_elapsed), 0.0f );
+        //_triangle.SetPosition(1, 0.3f + 0.3f * MathF.Sin((float)_elapsed), 0.0f );
+       // _triangle.UpdateVertices();
 
         // --- TODO (P1–P5): codul vostru de logică se adaugă aici ---
         float t = (float)_elapsed;
@@ -164,7 +165,7 @@ public class Game : GameWindow
 
 
         // 3. Desenăm triunghiul.
-        _triangle.Draw();
+        _Quad.Draw();
 
         // 4. Afișăm cadrul terminat: back buffer <-> front buffer.
         SwapBuffers();
@@ -173,9 +174,10 @@ public class Game : GameWindow
     /// <summary>Apelată O SINGURĂ DATĂ, la închiderea ferestrei: eliberăm resursele GPU.</summary>
     protected override void OnUnload()
 {
-    _triangle.Dispose();
+    _Quad.Dispose();
     _shader.Dispose();
 
     base.OnUnload();
 }
 }
+
